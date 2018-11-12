@@ -12,6 +12,7 @@
 		23F48A8D2199C49500978C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F48A8B2199C49500978C70 /* Main.storyboard */; };
 		23F48A8F2199C49600978C70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23F48A8E2199C49600978C70 /* Assets.xcassets */; };
 		23F48A922199C49600978C70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F48A902199C49600978C70 /* LaunchScreen.storyboard */; };
+		79C60D3C1748D7E5A7CBC984 /* Pods_Map_Photo_Tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EF06C981D16A0DC151B96DE /* Pods_Map_Photo_Tracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		23F48A8E2199C49600978C70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23F48A912199C49600978C70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23F48A932199C49600978C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EF06C981D16A0DC151B96DE /* Pods_Map_Photo_Tracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Map_Photo_Tracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92CD0B94AC1AEFFFC3DBEBD7 /* Pods-Map Photo Tracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map Photo Tracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-Map Photo Tracker/Pods-Map Photo Tracker.release.xcconfig"; sourceTree = "<group>"; };
+		ED3B9B8EFBA2EB88A472400F /* Pods-Map Photo Tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Map Photo Tracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Map Photo Tracker/Pods-Map Photo Tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79C60D3C1748D7E5A7CBC984 /* Pods_Map_Photo_Tracker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0C298C472246B01994F566 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED3B9B8EFBA2EB88A472400F /* Pods-Map Photo Tracker.debug.xcconfig */,
+				92CD0B94AC1AEFFFC3DBEBD7 /* Pods-Map Photo Tracker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		23F48A7B2199C49400978C70 = {
 			isa = PBXGroup;
 			children = (
 				23F48A862199C49500978C70 /* Map Photo Tracker */,
 				23F48A852199C49500978C70 /* Products */,
+				0E0C298C472246B01994F566 /* Pods */,
+				C2D849823354C9D9CAF2A2CD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -104,6 +120,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		C2D849823354C9D9CAF2A2CD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3EF06C981D16A0DC151B96DE /* Pods_Map_Photo_Tracker.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -111,9 +135,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 23F48A962199C49600978C70 /* Build configuration list for PBXNativeTarget "Map Photo Tracker" */;
 			buildPhases = (
+				6C2FE5DAEED36DAE068512A3 /* [CP] Check Pods Manifest.lock */,
 				23F48A802199C49500978C70 /* Sources */,
 				23F48A812199C49500978C70 /* Frameworks */,
 				23F48A822199C49500978C70 /* Resources */,
+				770F1EAC94F72C74797B53D8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +195,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6C2FE5DAEED36DAE068512A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Map Photo Tracker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		770F1EAC94F72C74797B53D8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Map Photo Tracker/Pods-Map Photo Tracker-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Map Photo Tracker/Pods-Map Photo Tracker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		23F48A802199C49500978C70 /* Sources */ = {
@@ -320,6 +387,7 @@
 		};
 		23F48A972199C49600978C70 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED3B9B8EFBA2EB88A472400F /* Pods-Map Photo Tracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -338,6 +406,7 @@
 		};
 		23F48A982199C49600978C70 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92CD0B94AC1AEFFFC3DBEBD7 /* Pods-Map Photo Tracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
