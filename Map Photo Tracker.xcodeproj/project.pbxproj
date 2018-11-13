@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23B4C031219B178400B02366 /* DroppablePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C030219B178400B02366 /* DroppablePin.swift */; };
 		23F48A882199C49500978C70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F48A872199C49500978C70 /* AppDelegate.swift */; };
 		23F48A8A2199C49500978C70 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F48A892199C49500978C70 /* MapVC.swift */; };
 		23F48A8D2199C49500978C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F48A8B2199C49500978C70 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23B4C030219B178400B02366 /* DroppablePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppablePin.swift; sourceTree = "<group>"; };
 		23F48A842199C49500978C70 /* Map Photo Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Photo Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F48A872199C49500978C70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23F48A892199C49500978C70 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				23F48A8B2199C49500978C70 /* Main.storyboard */,
+				23B4C030219B178400B02366 /* DroppablePin.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23F48A8A2199C49500978C70 /* MapVC.swift in Sources */,
+				23B4C031219B178400B02366 /* DroppablePin.swift in Sources */,
 				23F48A882199C49500978C70 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
