@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23B4C031219B178400B02366 /* DroppablePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C030219B178400B02366 /* DroppablePin.swift */; };
+		23B4C033219B7CBE00B02366 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C032219B7CBE00B02366 /* PhotoCell.swift */; };
 		23F48A882199C49500978C70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F48A872199C49500978C70 /* AppDelegate.swift */; };
 		23F48A8A2199C49500978C70 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F48A892199C49500978C70 /* MapVC.swift */; };
 		23F48A8D2199C49500978C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F48A8B2199C49500978C70 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		23B4C030219B178400B02366 /* DroppablePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppablePin.swift; sourceTree = "<group>"; };
+		23B4C032219B7CBE00B02366 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		23F48A842199C49500978C70 /* Map Photo Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Photo Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F48A872199C49500978C70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23F48A892199C49500978C70 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				23F48A9A2199C4BE00978C70 /* View */,
 				23F48A992199C4B000978C70 /* Controller */,
 				23F48A872199C49500978C70 /* AppDelegate.swift */,
+				23F48A8B2199C49500978C70 /* Main.storyboard */,
 				23F48A8E2199C49600978C70 /* Assets.xcassets */,
 				23F48A902199C49600978C70 /* LaunchScreen.storyboard */,
 				23F48A932199C49600978C70 /* Info.plist */,
@@ -96,8 +99,8 @@
 		23F48A9A2199C4BE00978C70 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				23F48A8B2199C49500978C70 /* Main.storyboard */,
 				23B4C030219B178400B02366 /* DroppablePin.swift */,
+				23B4C032219B7CBE00B02366 /* PhotoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23B4C033219B7CBE00B02366 /* PhotoCell.swift in Sources */,
 				23F48A8A2199C49500978C70 /* MapVC.swift in Sources */,
 				23B4C031219B178400B02366 /* DroppablePin.swift in Sources */,
 				23F48A882199C49500978C70 /* AppDelegate.swift in Sources */,

@@ -14,9 +14,17 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var headline: UILabel!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var pullUpView: UIView!
+    @IBOutlet weak var pullUpViewHeight: NSLayoutConstraint!
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
     let regionRadius: Double = 1000
+    var spinner: UIActivityIndicatorView?
+    var progressLabel: UILabel?
+    let screenSize = UIScreen.main.bounds
+    // collection view
+    var flowLayout = UICollectionViewFlowLayout()
+    var collectionView: UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +32,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         locationManager.delegate = self
         configureLocationServices()
         addDoubleTap()
+        // setting up collection view
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
+        collectionView?.register(PhotoCell.self, forCellWithReuseIdentifier: "photoCell")
+        collectionView?.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        pullUpView.addSubview(collectionView!)
     }
     
     func addDoubleTap() {
@@ -31,6 +46,57 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         doubleTap.delegate = self
         doubleTap.numberOfTapsRequired = 2
         mapView.addGestureRecognizer(doubleTap)
+    }
+    
+    func animateViewUp() {
+        pullUpViewHeight.constant = 300
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func animateViewDown() {
+        pullUpViewHeight.constant = 0
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    func addSwipe() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
+        swipe.direction = .down
+        pullUpView.addGestureRecognizer(swipe)
+    }
+    
+    func addSpinner() {
+        spinner = UIActivityIndicatorView()
+        spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: 150)
+        spinner?.style = .whiteLarge
+        spinner?.color = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        spinner?.startAnimating()
+        collectionView?.addSubview(spinner!)
+    }
+    
+    func removeSpinner() {
+        if spinner != nil {
+            spinner?.removeFromSuperview()
+        }
+    }
+    
+    func addProgressLabel() {
+        progressLabel = UILabel()
+        progressLabel?.frame = CGRect(x: (screenSize.width / 2) - 125, y: 175, width: 250, height: 40)
+        progressLabel?.font = UIFont(name: "Avenir Next", size: 18)
+        progressLabel?.textColor = #colorLiteral(red: 0.1780119724, green: 0.1927374526, blue: 0.2141299175, alpha: 1)
+        progressLabel?.textAlignment = .center
+        progressLabel?.text = "12/40 PHOTOS LOADED"
+        collectionView?.addSubview(progressLabel!)
+    }
+    
+    func removeProgressLabel() {
+        if progressLabel != nil {
+            progressLabel?.removeFromSuperview()
+        }
     }
     
     @IBAction func mapBtn(_ sender: Any) {
@@ -50,7 +116,13 @@ extension MapVC: MKMapViewDelegate {
     }
     
     @objc func dropPin(sender: UITapGestureRecognizer) {
-        removePin() // removes previous pin from the map
+        removePin() // remove previous pin from the map
+        removeSpinner()
+        removeProgressLabel()
+        animateViewUp() // pull up bottom view when drop pin
+        addSwipe()
+        addSpinner()
+        addProgressLabel()
         let touchPoint = sender.location(in: mapView) // x,y coordinates on mapView
         let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView) // converted in lat,long coordinates
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
@@ -90,4 +162,22 @@ extension MapVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         centerMapOnUserLocation()
     }
+}
+
+extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // take items from array
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
+        return cell
+    }
+    
+    
 }
