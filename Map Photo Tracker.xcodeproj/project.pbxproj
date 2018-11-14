@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		23B4C031219B178400B02366 /* DroppablePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C030219B178400B02366 /* DroppablePin.swift */; };
 		23B4C033219B7CBE00B02366 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C032219B7CBE00B02366 /* PhotoCell.swift */; };
+		23DF18A0219C6E4D00D07CCE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DF189F219C6E4D00D07CCE /* Constants.swift */; };
 		23F48A882199C49500978C70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F48A872199C49500978C70 /* AppDelegate.swift */; };
 		23F48A8A2199C49500978C70 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F48A892199C49500978C70 /* MapVC.swift */; };
 		23F48A8D2199C49500978C70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F48A8B2199C49500978C70 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		23B4C030219B178400B02366 /* DroppablePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppablePin.swift; sourceTree = "<group>"; };
 		23B4C032219B7CBE00B02366 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		23DF189F219C6E4D00D07CCE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		23F48A842199C49500978C70 /* Map Photo Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Map Photo Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23F48A872199C49500978C70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23F48A892199C49500978C70 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		23F48A9D2199C4D800978C70 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				23DF189F219C6E4D00D07CCE /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23DF18A0219C6E4D00D07CCE /* Constants.swift in Sources */,
 				23B4C033219B7CBE00B02366 /* PhotoCell.swift in Sources */,
 				23F48A8A2199C49500978C70 /* MapVC.swift in Sources */,
 				23B4C031219B178400B02366 /* DroppablePin.swift in Sources */,
