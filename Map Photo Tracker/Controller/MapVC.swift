@@ -9,19 +9,25 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Alamofire
+import AlamofireImage
 
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
-
+    
     @IBOutlet weak var headline: UILabel!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpView: UIView!
     @IBOutlet weak var pullUpViewHeight: NSLayoutConstraint!
+    // location service
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
+    // map
     let regionRadius: Double = 1000
     var spinner: UIActivityIndicatorView?
     var progressLabel: UILabel?
     let screenSize = UIScreen.main.bounds
+    // photos
+    var imageUrlArray = [String]()
     // collection view
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
@@ -47,7 +53,7 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         doubleTap.numberOfTapsRequired = 2
         mapView.addGestureRecognizer(doubleTap)
     }
-    
+    // MARK: - pullUpView methods
     func animateViewUp() {
         pullUpViewHeight.constant = 300
         UIView.animate(withDuration: 0.3) {
@@ -104,8 +110,21 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             centerMapOnUserLocation()
         }
     }
-
-
+    // MARK: - Alamofire requests
+    func retreiveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
+        imageUrlArray = []
+        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 20)).responseJSON { (response) in
+            guard let json = response.result.value as? [String:AnyObject] else {return}
+            let photosDict = json["photos"] as! [String:AnyObject]
+            let photosDictArray = photosDict["photo"] as! [[String:AnyObject]]
+            for photo in photosDictArray {
+                let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!).jpg"
+                self.imageUrlArray.append(postUrl)
+            }
+            handler(true)
+        }
+    }
+    
 }
 
 extension MapVC: MKMapViewDelegate {
@@ -129,7 +148,10 @@ extension MapVC: MKMapViewDelegate {
         mapView.addAnnotation(annotation) // add pin
         let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius) // centers map to new pin location
         mapView.setRegion(coordinateRegion, animated: true)
-        
+        // get photos url's for pinned location
+        retreiveUrls(forAnnotation: annotation) { (true) in
+            print(self.imageUrlArray)
+        }
     }
     
     func removePin() {
