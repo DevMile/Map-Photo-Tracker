@@ -13,25 +13,25 @@ import Alamofire
 import AlamofireImage
 
 class MapVC: UIViewController, UIGestureRecognizerDelegate {
-    
-    @IBOutlet weak var headline: UILabel!
+    // MARK: - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pullUpView: UIView!
     @IBOutlet weak var pullUpViewHeight: NSLayoutConstraint!
-    // location service
+    // MARK: - Location service
     var locationManager = CLLocationManager()
     let authorizationStatus = CLLocationManager.authorizationStatus()
-    // map
+    // MARK: - Map
     let regionRadius: Double = 1000
     var spinner: UIActivityIndicatorView?
     var progressLabel: UILabel?
     let screenSize = UIScreen.main.bounds
-    // photos
+    // MARK: - Photos
     var imageUrlArray = [String]()
-    // collection view
+    var photoArray = [UIImage]()
+    // MARK: - Collection view
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
-    
+    // MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
@@ -39,11 +39,11 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         configureLocationServices()
         addDoubleTap()
         // setting up collection view
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: flowLayout)
         collectionView?.register(PhotoCell.self, forCellWithReuseIdentifier: "photoCell")
-        collectionView?.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+        collectionView?.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         pullUpView.addSubview(collectionView!)
     }
     
@@ -53,7 +53,19 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         doubleTap.numberOfTapsRequired = 2
         mapView.addGestureRecognizer(doubleTap)
     }
+    
+    @IBAction func mapBtn(_ sender: Any) {
+        if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
+            centerMapOnUserLocation()
+        }
+    }
     // MARK: - pullUpView methods
+    func addSwipe() {
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
+        swipe.direction = .down
+        pullUpView.addGestureRecognizer(swipe)
+    }
+    
     func animateViewUp() {
         pullUpViewHeight.constant = 300
         UIView.animate(withDuration: 0.3) {
@@ -62,18 +74,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     }
     
     @objc func animateViewDown() {
+        cancelAllSessions()
         pullUpViewHeight.constant = 0
         UIView.animate(withDuration: 0.3) {
             self.view.layoutIfNeeded()
         }
     }
-    
-    func addSwipe() {
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(animateViewDown))
-        swipe.direction = .down
-        pullUpView.addGestureRecognizer(swipe)
-    }
-    
+    // MARK: - Spinner
     func addSpinner() {
         spinner = UIActivityIndicatorView()
         spinner?.center = CGPoint(x: (screenSize.width / 2) - ((spinner?.frame.width)! / 2), y: 150)
@@ -88,14 +95,13 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             spinner?.removeFromSuperview()
         }
     }
-    
+    // MARK: - Progress label
     func addProgressLabel() {
         progressLabel = UILabel()
         progressLabel?.frame = CGRect(x: (screenSize.width / 2) - 125, y: 175, width: 250, height: 40)
-        progressLabel?.font = UIFont(name: "Avenir Next", size: 18)
+        progressLabel?.font = UIFont(name: "Avenir Next", size: 16)
         progressLabel?.textColor = #colorLiteral(red: 0.1780119724, green: 0.1927374526, blue: 0.2141299175, alpha: 1)
         progressLabel?.textAlignment = .center
-        progressLabel?.text = "12/40 PHOTOS LOADED"
         collectionView?.addSubview(progressLabel!)
     }
     
@@ -105,15 +111,9 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    @IBAction func mapBtn(_ sender: Any) {
-        if authorizationStatus == .authorizedAlways || authorizationStatus == .authorizedWhenInUse {
-            centerMapOnUserLocation()
-        }
-    }
     // MARK: - Alamofire requests
     func retreiveUrls(forAnnotation annotation: DroppablePin, handler: @escaping (_ status: Bool) -> ()) {
-        imageUrlArray = []
-        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 20)).responseJSON { (response) in
+        Alamofire.request(flickrUrl(forApiKey: apiKey, withAnnotation: annotation, andNumberOfPhotos: 40)).responseJSON { (response) in
             guard let json = response.result.value as? [String:AnyObject] else {return}
             let photosDict = json["photos"] as! [String:AnyObject]
             let photosDictArray = photosDict["photo"] as! [[String:AnyObject]]
@@ -125,6 +125,29 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    func retreivePhotos(handler: @escaping (_ status: Bool) -> ()) {
+        for url in imageUrlArray {
+            Alamofire.request(url).responseImage { (response) in
+                guard let photo = response.result.value else {return}
+                self.photoArray.append(photo)
+                self.progressLabel?.text = "\(self.photoArray.count)/40 PHOTOS LOADED"
+                if self.photoArray.count == self.imageUrlArray.count {
+                    handler(true)
+                }
+            }
+        }
+    }
+    
+    func cancelAllSessions() {
+        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { (sessionDataTask, uploadTask, downloadTask) in
+            sessionDataTask.forEach({ (task) in
+                task.cancel()
+            })
+            downloadTask.forEach({ (task) in
+                task.cancel()
+            })
+        }
+    }
 }
 
 extension MapVC: MKMapViewDelegate {
@@ -135,22 +158,41 @@ extension MapVC: MKMapViewDelegate {
     }
     
     @objc func dropPin(sender: UITapGestureRecognizer) {
-        removePin() // remove previous pin from the map
+        removePin()
         removeSpinner()
         removeProgressLabel()
-        animateViewUp() // pull up bottom view when drop pin
+        cancelAllSessions()
+        // empty image array and reload collection view
+        imageUrlArray = []
+        photoArray = []
+        collectionView?.reloadData()
+        // pull up bottom view when drop pin
+        animateViewUp()
         addSwipe()
         addSpinner()
         addProgressLabel()
-        let touchPoint = sender.location(in: mapView) // x,y coordinates on mapView
-        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView) // converted in lat,long coordinates
+        // x,y coordinates on mapView
+        let touchPoint = sender.location(in: mapView)
+        // convert in lat,long coordinates
+        let touchCoordinate = mapView.convert(touchPoint, toCoordinateFrom: mapView)
         let annotation = DroppablePin(coordinate: touchCoordinate, identifier: "droppablePin")
-        mapView.addAnnotation(annotation) // add pin
-        let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius) // centers map to new pin location
+        mapView.addAnnotation(annotation)
+        // centers map to new pin location
+        let coordinateRegion = MKCoordinateRegion(center: touchCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
-        // get photos url's for pinned location
-        retreiveUrls(forAnnotation: annotation) { (true) in
-            print(self.imageUrlArray)
+        // get photos from pinned location
+        retreiveUrls(forAnnotation: annotation) { (success) in
+            if success {
+                self.retreivePhotos(handler: { (success) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.removeProgressLabel()
+                            self.removeSpinner()
+                            self.collectionView?.reloadData()
+                        }
+                    }
+                })
+            }
         }
     }
     
@@ -192,14 +234,16 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // take items from array
-        return 4
+        return photoArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as! PhotoCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCell else {
+            return UICollectionViewCell()
+        }
+        let imageFromIndex = photoArray[indexPath.row]
+        let imageView = UIImageView(image: imageFromIndex)
+        cell.addSubview(imageView)
         return cell
     }
-    
-    
 }

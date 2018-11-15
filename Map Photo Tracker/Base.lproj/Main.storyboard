@@ -79,7 +79,6 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="headline" destination="fit-YY-vks" id="Ecg-6k-Jdn"/>
                         <outlet property="mapView" destination="ejL-Kn-fzV" id="Me5-pZ-2Yd"/>
                         <outlet property="pullUpView" destination="LcU-yf-UJA" id="MH1-OV-G5A"/>
                         <outlet property="pullUpViewHeight" destination="WLN-jm-U57" id="T2B-SQ-tac"/>
