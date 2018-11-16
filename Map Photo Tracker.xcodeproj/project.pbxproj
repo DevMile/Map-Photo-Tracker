@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		237FD405219EF93100C1F8A8 /* PopVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237FD404219EF93100C1F8A8 /* PopVC.swift */; };
+		237FD407219EFBB900C1F8A8 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 237FD406219EFBB900C1F8A8 /* RoundedView.swift */; };
 		23B4C031219B178400B02366 /* DroppablePin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C030219B178400B02366 /* DroppablePin.swift */; };
 		23B4C033219B7CBE00B02366 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B4C032219B7CBE00B02366 /* PhotoCell.swift */; };
 		23DF18A0219C6E4D00D07CCE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DF189F219C6E4D00D07CCE /* Constants.swift */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		237FD404219EF93100C1F8A8 /* PopVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopVC.swift; sourceTree = "<group>"; };
+		237FD406219EFBB900C1F8A8 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		23B4C030219B178400B02366 /* DroppablePin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DroppablePin.swift; sourceTree = "<group>"; };
 		23B4C032219B7CBE00B02366 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		23DF189F219C6E4D00D07CCE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -77,8 +81,6 @@
 			isa = PBXGroup;
 			children = (
 				23F48A9D2199C4D800978C70 /* Utilities */,
-				23F48A9C2199C4D000978C70 /* Extensions */,
-				23F48A9B2199C4C800978C70 /* Model */,
 				23F48A9A2199C4BE00978C70 /* View */,
 				23F48A992199C4B000978C70 /* Controller */,
 				23F48A872199C49500978C70 /* AppDelegate.swift */,
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				23F48A892199C49500978C70 /* MapVC.swift */,
+				237FD404219EF93100C1F8A8 /* PopVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -103,22 +106,9 @@
 			children = (
 				23B4C030219B178400B02366 /* DroppablePin.swift */,
 				23B4C032219B7CBE00B02366 /* PhotoCell.swift */,
+				237FD406219EFBB900C1F8A8 /* RoundedView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		23F48A9B2199C4C800978C70 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		23F48A9C2199C4D000978C70 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		23F48A9D2199C4D800978C70 /* Utilities */ = {
@@ -251,9 +241,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				237FD405219EF93100C1F8A8 /* PopVC.swift in Sources */,
 				23DF18A0219C6E4D00D07CCE /* Constants.swift in Sources */,
 				23B4C033219B7CBE00B02366 /* PhotoCell.swift in Sources */,
 				23F48A8A2199C49500978C70 /* MapVC.swift in Sources */,
+				237FD407219EFBB900C1F8A8 /* RoundedView.swift in Sources */,
 				23B4C031219B178400B02366 /* DroppablePin.swift in Sources */,
 				23F48A882199C49500978C70 /* AppDelegate.swift in Sources */,
 			);
