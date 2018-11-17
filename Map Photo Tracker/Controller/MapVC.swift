@@ -28,6 +28,8 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Photos
     var imageUrlArray = [String]()
     var photoArray = [UIImage]()
+    var photoDescription = [String]()
+    var photoTitle = [String]()
     // MARK: - Collection view
     var flowLayout = UICollectionViewFlowLayout()
     var collectionView: UICollectionView?
@@ -121,7 +123,12 @@ class MapVC: UIViewController, UIGestureRecognizerDelegate {
             let photosDictArray = photosDict["photo"] as! [[String:AnyObject]]
             for photo in photosDictArray {
                 let postUrl = "https://farm\(photo["farm"]!).staticflickr.com/\(photo["server"]!)/\(photo["id"]!)_\(photo["secret"]!).jpg"
+                guard let description = photo["description"] as? [String:String], let title = photo["title"] as? String else {return}
                 self.imageUrlArray.append(postUrl)
+                self.photoTitle.append(title)
+                if let content = description["_content"] {
+                    self.photoDescription.append(content)
+                }
             }
             handler(true)
         }
@@ -251,7 +258,7 @@ extension MapVC: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let popView = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else {return}
-        popView.receiveData(forImage: photoArray[indexPath.row])
+        popView.receiveData(forImage: photoArray[indexPath.row], imageTitle: photoTitle[indexPath.row], imageDescription: photoDescription[indexPath.row])
         present(popView, animated: true, completion: nil)
     }
 }
@@ -260,7 +267,7 @@ extension MapVC: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = collectionView?.indexPathForItem(at: location), let cell = collectionView?.cellForItem(at: indexPath) else {return nil}
         guard let popView = storyboard?.instantiateViewController(withIdentifier: "PopVC") as? PopVC else {return nil}
-        popView.receiveData(forImage: photoArray[indexPath.row])
+        popView.receiveData(forImage: photoArray[indexPath.row], imageTitle: photoTitle[indexPath.row], imageDescription: photoDescription[indexPath.row])
         previewingContext.sourceRect = cell.contentView.frame
         return popView
     }

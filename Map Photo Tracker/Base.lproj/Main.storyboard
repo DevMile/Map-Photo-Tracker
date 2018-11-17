@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,19 +15,18 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="Map_Photo_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsCompass="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejL-Kn-fzV">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aGF-0U-kwk">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double-tap to drop a pin and view photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fit-YY-vks">
-                                        <rect key="frame" x="32" y="40" width="311" height="22"/>
+                                        <rect key="frame" x="51.5" y="40" width="311" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="311" id="LOc-6N-7Vl"/>
                                             <constraint firstAttribute="height" constant="22" id="jjx-9A-V3G"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
@@ -43,7 +42,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gcq-Q0-3F8">
-                                <rect key="frame" x="293" y="579" width="67" height="67"/>
+                                <rect key="frame" x="332" y="793" width="67" height="67"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="67" id="FXc-ft-5bT"/>
                                     <constraint firstAttribute="height" constant="67" id="qFx-jq-n66"/>
@@ -54,7 +53,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LcU-yf-UJA">
-                                <rect key="frame" x="0.0" y="666" width="375" height="1"/>
+                                <rect key="frame" x="0.0" y="895" width="414" height="1"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="WLN-jm-U57"/>
@@ -65,7 +64,7 @@
                         <constraints>
                             <constraint firstItem="LcU-yf-UJA" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0YQ-Sc-hax"/>
                             <constraint firstItem="aGF-0U-kwk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0lL-Ec-fYg"/>
-                            <constraint firstItem="LcU-yf-UJA" firstAttribute="top" secondItem="Gcq-Q0-3F8" secondAttribute="bottom" constant="20" id="Mpn-Fq-YMF"/>
+                            <constraint firstItem="LcU-yf-UJA" firstAttribute="top" secondItem="Gcq-Q0-3F8" secondAttribute="bottom" constant="35" id="Mpn-Fq-YMF"/>
                             <constraint firstItem="ejL-Kn-fzV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="VM6-lh-Zwr"/>
                             <constraint firstItem="aGF-0U-kwk" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Y90-a6-3Fr"/>
                             <constraint firstAttribute="bottom" secondItem="LcU-yf-UJA" secondAttribute="bottom" id="YOC-MV-Mf3"/>
@@ -93,14 +92,14 @@
             <objects>
                 <viewController storyboardIdentifier="PopVC" id="qk4-kS-Tcw" customClass="PopVC" customModule="Map_Photo_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Odq-BP-bPM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JjD-tI-BK3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qb8-aA-eLe" customClass="RoundedView" customModule="Map_Photo_Tracker" customModuleProvider="target">
-                                <rect key="frame" x="62.5" y="607" width="250" height="30"/>
+                                <rect key="frame" x="82" y="802" width="250" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Double-tap to dismiss image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtG-nW-Ebj">
                                         <rect key="frame" x="12" y="3" width="226" height="24"/>
@@ -117,25 +116,58 @@
                                     <constraint firstAttribute="width" constant="250" id="ceb-qW-LdY"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qdE-ur-eOY" customClass="RoundedView" customModule="Map_Photo_Tracker" customModuleProvider="target">
+                                <rect key="frame" x="20" y="74" width="300" height="160"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of the photo goes here" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyU-3k-gQj">
+                                        <rect key="frame" x="5" y="5" width="290" height="26"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="19"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description of the image goes here" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1f-UR-DKl">
+                                        <rect key="frame" x="5" y="36" width="290" height="23.5"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-MediumItalic" family="Avenir Next" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.95226249129999996" green="0.62454917560000001" blue="0.15454990069999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="gyU-3k-gQj" firstAttribute="top" secondItem="qdE-ur-eOY" secondAttribute="top" constant="5" id="3El-7Z-iZ5"/>
+                                    <constraint firstItem="m1f-UR-DKl" firstAttribute="top" secondItem="gyU-3k-gQj" secondAttribute="bottom" constant="5" id="VZK-Yh-T5X"/>
+                                    <constraint firstAttribute="trailing" secondItem="gyU-3k-gQj" secondAttribute="trailing" constant="5" id="adJ-nR-Ktt"/>
+                                    <constraint firstAttribute="height" constant="160" id="dls-Cm-QUA"/>
+                                    <constraint firstItem="m1f-UR-DKl" firstAttribute="leading" secondItem="qdE-ur-eOY" secondAttribute="leading" constant="5" id="eBJ-3Z-qVu"/>
+                                    <constraint firstItem="gyU-3k-gQj" firstAttribute="leading" secondItem="qdE-ur-eOY" secondAttribute="leading" constant="5" id="juv-Cg-1Nq"/>
+                                    <constraint firstAttribute="trailing" secondItem="m1f-UR-DKl" secondAttribute="trailing" constant="5" id="lYK-Eg-sSl"/>
+                                    <constraint firstAttribute="width" constant="300" id="oqm-l5-FbJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="JjD-tI-BK3" firstAttribute="leading" secondItem="Pcb-57-Rga" secondAttribute="leading" id="50n-la-HUl"/>
                             <constraint firstItem="JjD-tI-BK3" firstAttribute="top" secondItem="Odq-BP-bPM" secondAttribute="top" id="6wy-0C-7qG"/>
                             <constraint firstItem="Pcb-57-Rga" firstAttribute="bottom" secondItem="Qb8-aA-eLe" secondAttribute="bottom" constant="30" id="GUI-JO-m90"/>
+                            <constraint firstItem="qdE-ur-eOY" firstAttribute="top" secondItem="Pcb-57-Rga" secondAttribute="top" constant="30" id="Tkt-Tw-HoB"/>
                             <constraint firstItem="JjD-tI-BK3" firstAttribute="trailing" secondItem="Pcb-57-Rga" secondAttribute="trailing" id="cTw-EO-e4Z"/>
                             <constraint firstItem="JjD-tI-BK3" firstAttribute="bottom" secondItem="Pcb-57-Rga" secondAttribute="bottom" id="mjm-to-WrI"/>
                             <constraint firstItem="Qb8-aA-eLe" firstAttribute="centerX" secondItem="Odq-BP-bPM" secondAttribute="centerX" id="rJc-sh-HRi"/>
+                            <constraint firstItem="qdE-ur-eOY" firstAttribute="leading" secondItem="Pcb-57-Rga" secondAttribute="leading" constant="20" id="vfN-Db-mB7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pcb-57-Rga"/>
                     </view>
                     <connections>
+                        <outlet property="imageDescription" destination="m1f-UR-DKl" id="5YJ-Ck-CTy"/>
+                        <outlet property="imageTitle" destination="gyU-3k-gQj" id="Co0-1d-Hgu"/>
                         <outlet property="popImageView" destination="JjD-tI-BK3" id="AsN-IG-O0V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="el8-MC-Xdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="130.88455772113943"/>
+            <point key="canvasLocation" x="786.95652173913049" y="130.58035714285714"/>
         </scene>
     </scenes>
     <resources>
