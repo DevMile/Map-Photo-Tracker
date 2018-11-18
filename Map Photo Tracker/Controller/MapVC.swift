@@ -174,6 +174,8 @@ extension MapVC: MKMapViewDelegate {
         // empty image array and reload collection view
         imageUrlArray = []
         photoArray = []
+        photoDescription = []
+        photoTitle = []
         collectionView?.reloadData()
         // pull up bottom view when drop pin
         animateViewUp()
